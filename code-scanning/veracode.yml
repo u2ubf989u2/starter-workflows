@@ -29,7 +29,7 @@ jobs:
       with:
         repository: ''
 
-    - uses: papeloto/action-zip@v1
+    - uses: vimtor/action-zip@5f1c4aa587ea41db1110df6a99981dbe19cee310
       with:
         files: /
         recursive: true
@@ -41,7 +41,7 @@ jobs:
         path: veracode-pipeline-scan-results-to-sarif.zip
 
     # download the Veracode Static Analysis Pipeline scan jar
-    - uses: wei/curl@master
+    - uses: wei/curl@012398a392d02480afa2720780031f8621d5f94c
       with:
         args: -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
     - run: unzip -o pipeline-scan-LATEST.zip
@@ -57,7 +57,7 @@ jobs:
         path: results.json
     - name: Convert pipeline scan output to SARIF format
       id: convert
-      uses: veracode/veracode-pipeline-scan-results-to-sarif@master
+      uses: veracode/veracode-pipeline-scan-results-to-sarif@ff08ae5b45d5384cb4679932f184c013d34da9be
       with:
         pipeline-results-json: results.json
     - uses: github/codeql-action/upload-sarif@v1
